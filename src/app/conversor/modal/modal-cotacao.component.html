@@ -1,0 +1,17 @@
+<div [id]="id" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="Cotação">Cotação em {{dataCotacao | dataBr}} </h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <h3> {{conversao.valor}} {{conversao.moedaDe}} = {{valorConvertido}} {{conversao.moedaPara}} </h3>
+          <h5> 1 {{conversao.moedaPara}} = {{cotacaoPara}} {{conversao.moedaDe}} / 1 {{conversao.moedaDe}} = {{cotacaoPara}} {{cotacaoDe }} {{conversao.moedaPara}}</h5>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" (click)="novaConsulta()" data-bs-dismiss="modal">Nova Consulta</button>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,67 @@
+<br />
+<div class="alert alert-danger"
+    *ngIf="possuiErro"
+	role="alert">
+	Erro obtendo dados. Tente novamente.
+</div>
+<div class="panel panel-success">
+	<div class="alert alert-info">
+		Selecione a moeda a ser convertida
+	</div>
+	<div class="panel-body text-center">
+	  <form #conversaoForm="ngForm" class="form-inline">
+		<div class="row">
+            <div class="col-md-3">
+                <input 
+                type="text" 
+                name="valor"
+                [(ngModel)]="conversao.valor"
+                class="form-control text-right"
+                placeholder="0"
+                appNumero 
+                required>
+            </div>
+		    <div class="col-md-3">
+                <select 
+                name="moedaDe"
+                [(ngModel)]="conversao.moedaDe"
+                class="form-control"
+                required>
+                <option *ngFor="let moeda of moedas" [value]="moeda.sigla">
+                    {{moeda.sigla}} - {{moeda.descricao}}
+                </option>
+                </select>
+            </div>
+            <div class="col-md-1">
+                <span class="glyphicon glyphicon-arrow-right" 
+                    aria-hidden="true"><i style="font-size: 30px;" class="bi bi-arrow-right-square"></i></span>
+            </div>
+            <div class="col-md-3">
+                <select
+                name="moedaPara"
+                [(ngModel)]="conversao.moedaPara"
+                class="form-control"
+                required>
+                <option *ngFor="let moeda of moedas" [value]="moeda.sigla">
+                    {{moeda.sigla }} - {{moeda.descricao}}
+                </option>
+            </select>
+            </div> 
+		<div class="col-md-2">
+            <input 
+			type="submit" 
+			value="Converter"
+            data-bs-toggle="modal" data-bs-target="#modalCotacao"
+            (click)="converter()"
+            [disabled]="!conversaoForm.form.valid"
+			class="btn btn-success">{{conversaoResponse | json}}
+        </div>
+        </div>
+	  </form>
+	</div>
+      <app-modal-cotacao 
+        [id]="'modalCotacao'" 
+        [conversaoResponse]="conversaoResponse" 
+        [conversao]="conversao"
+        (onConfirm)="init()"></app-modal-cotacao>
+</div>
